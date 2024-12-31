@@ -1,0 +1,257 @@
+[
+  {
+    "ContainingType": "SistemaGestion.Controllers.ContactoController",
+    "Method": "InsertarContacto",
+    "RelativePath": "api/contacto/insertar",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "contacto",
+        "Type": "SistemaGestion.Dtos.ContactoDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [],
+    "EndpointName": "InsertarContacto"
+  },
+  {
+    "ContainingType": "SistemaGestion.Controllers.EmpleadoController",
+    "Method": "ActualizarEmpleado",
+    "RelativePath": "api/empleado/actualizar",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "empleado",
+        "Type": "SistemaGestion.Dtos.EmpleadoDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [],
+    "EndpointName": "ActualizarEmpleado"
+  },
+  {
+    "ContainingType": "SistemaGestion.Controllers.EmpleadoController",
+    "Method": "AgregarEmpleado",
+    "RelativePath": "api/empleado/agregar",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "empleado",
+        "Type": "SistemaGestion.Dtos.EmpleadoDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [],
+    "EndpointName": "AgregarEmpleado"
+  },
+  {
+    "ContainingType": "SistemaGestion.Controllers.EmpleadoController",
+    "Method": "CargarEmpleado",
+    "RelativePath": "api/empleado/cargar/{EmpleadoID}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "EmpleadoID",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [],
+    "EndpointName": "CargarEmpleado"
+  },
+  {
+    "ContainingType": "SistemaGestion.Controllers.EmpleadoController",
+    "Method": "ConsultarEmpleado",
+    "RelativePath": "api/empleado/consultar/{EmpleadoID}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "EmpleadoID",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [],
+    "EndpointName": "ConsultarEmpleado"
+  },
+  {
+    "ContainingType": "SistemaGestion.Controllers.EmpleadoController",
+    "Method": "EliminarEmpleado",
+    "RelativePath": "api/empleado/eliminar/{EmpleadoID}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "EmpleadoID",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [],
+    "EndpointName": "EliminarEmpleado"
+  },
+  {
+    "ContainingType": "SistemaGestion.Controllers.EmpresaController",
+    "Method": "ActualizarEmpresa",
+    "RelativePath": "api/empresa/actualizar",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "empresa",
+        "Type": "SistemaGestion.Dtos.EmpresaDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [],
+    "EndpointName": "ActualizarEmpresa"
+  },
+  {
+    "ContainingType": "SistemaGestion.Controllers.EmpresaController",
+    "Method": "AgregarEmpresa",
+    "RelativePath": "api/empresa/agregar",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "empresa",
+        "Type": "SistemaGestion.Dtos.EmpresaDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [],
+    "EndpointName": "AgregarEmpresa"
+  },
+  {
+    "ContainingType": "SistemaGestion.Controllers.EmpresaController",
+    "Method": "CargarEmpresa",
+    "RelativePath": "api/empresa/cargar/{EmpresaID}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "EmpresaID",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [],
+    "EndpointName": "CargarEmpresa"
+  },
+  {
+    "ContainingType": "SistemaGestion.Controllers.EmpresaController",
+    "Method": "ConsultarEmpresa",
+    "RelativePath": "api/empresa/consultar/{EmpresaID}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "EmpresaID",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [],
+    "EndpointName": "ConsultarEmpresa"
+  },
+  {
+    "ContainingType": "SistemaGestion.Controllers.EmpresaController",
+    "Method": "EliminarEmpresa",
+    "RelativePath": "api/empresa/eliminar/{EmpresaID}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "EmpresaID",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [],
+    "EndpointName": "EliminarEmpresa"
+  },
+  {
+    "ContainingType": "SistemaGestion.Controllers.UsuarioController",
+    "Method": "ActualizarUsuario",
+    "RelativePath": "api/usuario/actualizar",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "json",
+        "Type": "System.Text.Json.JsonElement",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [],
+    "EndpointName": "ActualizarUsuario"
+  },
+  {
+    "ContainingType": "SistemaGestion.Controllers.UsuarioController",
+    "Method": "ConsultarUsuario",
+    "RelativePath": "api/usuario/consultar",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "usuarioID",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [],
+    "EndpointName": "ConsultarUsuario"
+  },
+  {
+    "ContainingType": "SistemaGestion.Controllers.UsuarioController",
+    "Method": "IniciarSesion",
+    "RelativePath": "api/usuario/iniciar-sesion",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "usuarioDto",
+        "Type": "SistemaGestion.Dtos.UsuarioDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [],
+    "EndpointName": "IniciarSesion"
+  },
+  {
+    "ContainingType": "SistemaGestion.Controllers.UsuarioController",
+    "Method": "RegistrarUsuario",
+    "RelativePath": "api/usuario/registrar",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "json",
+        "Type": "System.Text.Json.JsonElement",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [],
+    "EndpointName": "RegistrarUsuario"
+  }
+]
