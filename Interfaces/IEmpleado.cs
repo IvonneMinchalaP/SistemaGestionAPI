@@ -7,5 +7,7 @@
         string ConsultarEmpleado(int EmpleadoID);
         string ActualizarEmpleado(string json);
         string EliminarEmpleado(int EmpleadoID);
+        string ObtenerEmpleado();
+
     }
 }

@@ -14,7 +14,30 @@ namespace SistemaGestion.Servicios
         {
             _sql = sql;
         }
+        public string ObtenerEmpleado()
+        {
+            RespuestaSpDto respuestaDto = new RespuestaSpDto();
+            string respuesta;
 
+            try
+            {
+                respuesta = _sql.EjecutarQuery("{}", "gen.spObtenerEmpleados");
+                if (string.IsNullOrEmpty(respuesta))
+                {
+                    respuestaDto.idrespuesta = 0;
+                    respuestaDto.mensaje = new { codigo = "Error BaseDatos" };
+                    return JsonConvert.SerializeObject(respuestaDto);
+                }
+            }
+            catch (Exception ex)
+            {
+                respuestaDto.idrespuesta = 0;
+                respuestaDto.mensaje = new { codigo = "Error Interno", detalle = ex.Message };
+                respuesta = JsonConvert.SerializeObject(respuestaDto);
+            }
+
+            return respuesta;
+        }
         public string CargarEmpleado(int EmpleadoID)
         {
             RespuestaSpDto respuestaDto = new RespuestaSpDto();

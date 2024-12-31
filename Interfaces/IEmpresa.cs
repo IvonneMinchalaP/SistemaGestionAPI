@@ -7,7 +7,7 @@
         string ConsultarEmpresa(int EmpresaID);
         string ActualizarEmpresa(string json);
         string EliminarEmpresa(int EmpresaID);
-
+        string ObtenerEmpresas();
 
 
     }

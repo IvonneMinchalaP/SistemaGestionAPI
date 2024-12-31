@@ -228,7 +228,31 @@
         ]
       }
     },
-    "/api/empresa/cargar/{EmpresaID}": {
+    "/api/empresa/obtener-empresas": {
+      "get": {
+        "tags": [
+          "Empresa"
+        ],
+        "operationId": "ObtenerEmpresas",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          }
+        ]
+      }
+    },
+    "/api/empresa/cargar": {
       "get": {
         "tags": [
           "Empresa"
@@ -236,9 +260,8 @@
         "operationId": "CargarEmpresa",
         "parameters": [
           {
-            "name": "EmpresaID",
-            "in": "path",
-            "required": true,
+            "name": "empresaID",
+            "in": "query",
             "schema": {
               "type": "integer",
               "format": "int32"

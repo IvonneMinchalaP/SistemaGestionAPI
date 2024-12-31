@@ -14,23 +14,20 @@ namespace SistemaGestion.Servicios
         {
             _sql = sql;
         }
-
-        public string CargarEmpresa(string json)
+        public string ObtenerEmpresas()
         {
             RespuestaSpDto respuestaDto = new RespuestaSpDto();
             string respuesta;
+
             try
             {
-                var EmpresaDto = JsonConvert.DeserializeObject<EmpresaDto>(json);
-
-                if (EmpresaDto.EmpresaID == null)
+                respuesta = _sql.EjecutarQuery("{}", "gen.spObtenerEmpresas");
+                if (string.IsNullOrEmpty(respuesta))
                 {
                     respuestaDto.idrespuesta = 0;
-                    respuestaDto.mensaje = new { codigo = "Empresa No Encontrada" };
-                    respuesta = JsonConvert.SerializeObject(respuestaDto);
+                    respuestaDto.mensaje = new { codigo = "Error BaseDatos" };
+                    return JsonConvert.SerializeObject(respuestaDto);
                 }
-                respuesta = _sql.EjecutarQuery(json, "gen.spCargarEmpresa");
-
             }
             catch (Exception ex)
             {
@@ -40,6 +37,35 @@ namespace SistemaGestion.Servicios
             }
 
             return respuesta;
+        }
+
+        public string CargarEmpresa(string json)
+        {
+            RespuestaSpDto respuestaDto = new RespuestaSpDto();
+            string respuesta;
+
+            try
+            {
+                var EmpresaDto = JsonConvert.DeserializeObject<EmpresaDto>(json);
+
+                if (EmpresaDto?.EmpresaID == null)
+                {
+                    respuestaDto.idrespuesta = 0;
+                    respuestaDto.mensaje = new { codigo = "Empresa No Encontrada" };
+                    respuesta = JsonConvert.SerializeObject(respuestaDto);
+                }
+                // Llamada al procedimiento almacenado
+                respuesta = _sql.EjecutarQuery(json, "gen.spCargarEmpresa");
+            }
+            catch (Exception ex)
+            {
+                respuestaDto.idrespuesta = 0;
+                respuestaDto.mensaje = new { codigo = "Error Interno", detalle = ex.Message };
+                respuesta = JsonConvert.SerializeObject(respuestaDto);
+            }
+
+            return respuesta;
+
         }
 
         public string AgregarEmpresa(string json)

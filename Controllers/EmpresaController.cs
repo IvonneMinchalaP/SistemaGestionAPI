@@ -3,6 +3,13 @@ using Microsoft.AspNetCore.Mvc;
 using System.Text.Json;
 using SistemaGestion.Interfaces;
 using SistemaGestion.Dtos;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Text;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Data.SqlClient;
+using System.Data;
+using System.Security.Claims;
 
 namespace SistemaGestion.Controllers
 {
@@ -21,19 +28,45 @@ namespace SistemaGestion.Controllers
             _configuration = configuration;
 
         }
-
-        [HttpGet("cargar", Name = "CargarEmpresa")]
-        public IActionResult CargarEmpresa([FromQuery] int empresaID)
+        [HttpGet("obtener-empresas", Name = "ObtenerEmpresas")]
+        [Authorize]
+        public IActionResult ObtenerEmpresas()
         {
             try
             {
                 var token = Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
-
                 if (string.IsNullOrEmpty(token))
                 {
-                    return Unauthorized("Token no proporcionado o inválido.");
+                    return Unauthorized(new { mensaje = "Token no proporcionado" });
                 }
 
+                var respuesta = _empresa.ObtenerEmpresas();
+                if (string.IsNullOrEmpty(respuesta))
+                {
+                    return NotFound(new { mensaje = "No se encontraron empresas" });
+                }
+
+                return Ok(JsonSerializer.Deserialize<object>(respuesta));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { mensaje = "Error al ejecutar", detalle = ex.Message });
+            }
+        }
+
+
+        [HttpGet("cargar", Name = "CargarEmpresa")]
+        [Authorize]
+        public IActionResult CargarEmpresa([FromQuery] int empresaID)
+        {
+            try
+            {
+                //var token = Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
+
+                if (empresaID <= 0)
+                {
+                    return BadRequest(new { mensaje = "El ID de la empresa es inválido" });
+                }
                 var jsonRequest = JsonSerializer.Serialize(new { EmpresaID = empresaID });
                 var respuesta = _empresa.CargarEmpresa(jsonRequest);
 
@@ -62,7 +95,7 @@ namespace SistemaGestion.Controllers
                     return Unauthorized("Token no proporcionado o inválido.");
                 }
 
-                var json = JsonConvert.SerializeObject(empresa);
+                var json = JsonSerializer.Serialize(empresa);
                 var respuesta = _empresa.AgregarEmpresa(json);
                 return Ok(respuesta);
             }
@@ -96,9 +129,9 @@ namespace SistemaGestion.Controllers
                 return BadRequest(new { mensaje = "Error al ejecutar", detalle = ex.Message });
             }
         }
-       
 
-        [HttpPut ("actualizar", Name = "ActualizarEmpresa")]
+
+        [HttpPut("actualizar", Name = "ActualizarEmpresa")]
         public IActionResult ActualizarEmpresa([FromBody] EmpresaDto empresa)
         {
             try
@@ -110,7 +143,7 @@ namespace SistemaGestion.Controllers
                     return Unauthorized("Token no proporcionado o inválido.");
                 }
 
-                var json = JsonConvert.SerializeObject(empresa);
+                var json = JsonSerializer.Serialize(empresa);
                 var respuesta = _empresa.ActualizarEmpresa(json);
                 return Ok(respuesta);
             }

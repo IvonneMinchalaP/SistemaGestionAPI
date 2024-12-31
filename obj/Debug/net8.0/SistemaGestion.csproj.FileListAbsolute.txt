@@ -287,3 +287,4 @@ C:\Users\User\Desktop\Trabajo\SistemaGestion\obj\Debug\net8.0\ref\SistemaGestion
 C:\Users\Iminchala\Desktop\Angular-adv\API\SistemaGestion\bin\Debug\net8.0\DocumentFormat.OpenXml.dll
 C:\Users\Iminchala\Desktop\Angular-adv\API\SistemaGestion\bin\Debug\net8.0\DocumentFormat.OpenXml.Framework.dll
 C:\Users\Iminchala\Desktop\Angular-adv\API\SistemaGestion\bin\Debug\net8.0\System.IO.Packaging.dll
+C:\Users\Iminchala\Desktop\Angular-adv\API\SistemaGestion\obj\Debug\net8.0\SistemaGestion.sourcelink.json
