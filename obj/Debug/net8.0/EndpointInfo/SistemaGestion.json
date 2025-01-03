@@ -37,6 +37,30 @@
         }
       }
     },
+    "/api/empleado/obtener-empleado": {
+      "get": {
+        "tags": [
+          "Empleado"
+        ],
+        "operationId": "ObtenerEmpleados",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          }
+        ]
+      }
+    },
     "/api/empleado/cargar/{EmpleadoID}": {
       "get": {
         "tags": [
@@ -252,40 +276,6 @@
         ]
       }
     },
-    "/api/empresa/cargar": {
-      "get": {
-        "tags": [
-          "Empresa"
-        ],
-        "operationId": "CargarEmpresa",
-        "parameters": [
-          {
-            "name": "empresaID",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          }
-        },
-        "security": [
-          {
-            "oauth2": [ ]
-          }
-        ]
-      }
-    },
     "/api/empresa/agregar": {
       "post": {
         "tags": [
@@ -329,41 +319,6 @@
         ]
       }
     },
-    "/api/empresa/consultar/{EmpresaID}": {
-      "get": {
-        "tags": [
-          "Empresa"
-        ],
-        "operationId": "ConsultarEmpresa",
-        "parameters": [
-          {
-            "name": "EmpresaID",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          }
-        },
-        "security": [
-          {
-            "oauth2": [ ]
-          }
-        ]
-      }
-    },
     "/api/empresa/actualizar": {
       "put": {
         "tags": [
@@ -389,6 +344,40 @@
             }
           }
         },
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          }
+        ]
+      }
+    },
+    "/api/empresa/cargar": {
+      "get": {
+        "tags": [
+          "Empresa"
+        ],
+        "operationId": "CargarEmpresa",
+        "parameters": [
+          {
+            "name": "empresaID",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"

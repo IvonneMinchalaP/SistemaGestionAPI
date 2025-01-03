@@ -3,13 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Text.Json;
 using SistemaGestion.Interfaces;
 using SistemaGestion.Dtos;
-using Microsoft.IdentityModel.Tokens;
-using System.IdentityModel.Tokens.Jwt;
-using System.Text;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Data.SqlClient;
-using System.Data;
-using System.Security.Claims;
+
 
 namespace SistemaGestion.Controllers
 {
@@ -54,36 +48,9 @@ namespace SistemaGestion.Controllers
             }
         }
 
-
-        [HttpGet("cargar", Name = "CargarEmpresa")]
-        [Authorize]
-        public IActionResult CargarEmpresa([FromQuery] int empresaID)
-        {
-            try
-            {
-                //var token = Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
-
-                if (empresaID <= 0)
-                {
-                    return BadRequest(new { mensaje = "El ID de la empresa es inválido" });
-                }
-                var jsonRequest = JsonSerializer.Serialize(new { EmpresaID = empresaID });
-                var respuesta = _empresa.CargarEmpresa(jsonRequest);
-
-                if (string.IsNullOrEmpty(respuesta))
-                {
-                    return NotFound(new { mensaje = "Empresa no encontrado" });
-                }
-
-                return Ok(JsonSerializer.Deserialize<object>(respuesta));
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(new { mensaje = "Error al ejecutar", detalle = ex.Message });
-            }
-        }
-
         [HttpPost("agregar", Name = "AgregarEmpresa")]
+        [Authorize]
+
         public IActionResult AgregarEmpresa([FromBody] EmpresaDto empresa)
         {
             try
@@ -97,31 +64,6 @@ namespace SistemaGestion.Controllers
 
                 var json = JsonSerializer.Serialize(empresa);
                 var respuesta = _empresa.AgregarEmpresa(json);
-                return Ok(respuesta);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(new { mensaje = "Error al ejecutar", detalle = ex.Message });
-            }
-        }
-
-        [HttpGet("consultar/{EmpresaID}", Name = "ConsultarEmpresa")]
-        public IActionResult ConsultarEmpresa(int EmpresaID)
-        {
-            try
-            {
-                var token = Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
-
-                if (string.IsNullOrEmpty(token))
-                {
-                    return Unauthorized("Token no proporcionado o inválido.");
-                }
-
-                var respuesta = _empresa.ConsultarEmpresa(EmpresaID);
-                if (string.IsNullOrEmpty(respuesta))
-                {
-                    return NotFound(new { mensaje = "Empresa no encontrado" });
-                }
                 return Ok(respuesta);
             }
             catch (Exception ex)
@@ -146,6 +88,34 @@ namespace SistemaGestion.Controllers
                 var json = JsonSerializer.Serialize(empresa);
                 var respuesta = _empresa.ActualizarEmpresa(json);
                 return Ok(respuesta);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { mensaje = "Error al ejecutar", detalle = ex.Message });
+            }
+        }
+
+        [HttpGet("cargar", Name = "CargarEmpresa")]
+        [Authorize]
+        public IActionResult CargarEmpresa([FromQuery] int empresaID)
+        {
+            try
+            {
+                //var token = Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
+
+                if (empresaID <= 0)
+                {
+                    return BadRequest(new { mensaje = "El ID de la empresa es inválido" });
+                }
+                var jsonRequest = JsonSerializer.Serialize(new { EmpresaID = empresaID });
+                var respuesta = _empresa.CargarEmpresa(jsonRequest);
+
+                if (string.IsNullOrEmpty(respuesta))
+                {
+                    return NotFound(new { mensaje = "Empresa no encontrado" });
+                }
+
+                return Ok(JsonSerializer.Deserialize<object>(respuesta));
             }
             catch (Exception ex)
             {

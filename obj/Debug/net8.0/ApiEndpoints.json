@@ -102,6 +102,17 @@
     "EndpointName": "EliminarEmpleado"
   },
   {
+    "ContainingType": "SistemaGestion.Controllers.EmpleadoController",
+    "Method": "ObtenerEmpleado",
+    "RelativePath": "api/empleado/obtener-empleado",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [],
+    "EndpointName": "ObtenerEmpleados"
+  },
+  {
     "ContainingType": "SistemaGestion.Controllers.EmpresaController",
     "Method": "ActualizarEmpresa",
     "RelativePath": "api/empresa/actualizar",
@@ -151,23 +162,6 @@
     ],
     "ReturnTypes": [],
     "EndpointName": "CargarEmpresa"
-  },
-  {
-    "ContainingType": "SistemaGestion.Controllers.EmpresaController",
-    "Method": "ConsultarEmpresa",
-    "RelativePath": "api/empresa/consultar/{EmpresaID}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "EmpresaID",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [],
-    "EndpointName": "ConsultarEmpresa"
   },
   {
     "ContainingType": "SistemaGestion.Controllers.EmpresaController",

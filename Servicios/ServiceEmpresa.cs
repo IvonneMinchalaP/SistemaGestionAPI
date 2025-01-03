@@ -39,35 +39,6 @@ namespace SistemaGestion.Servicios
             return respuesta;
         }
 
-        public string CargarEmpresa(string json)
-        {
-            RespuestaSpDto respuestaDto = new RespuestaSpDto();
-            string respuesta;
-
-            try
-            {
-                var EmpresaDto = JsonConvert.DeserializeObject<EmpresaDto>(json);
-
-                if (EmpresaDto?.EmpresaID == null)
-                {
-                    respuestaDto.idrespuesta = 0;
-                    respuestaDto.mensaje = new { codigo = "Empresa No Encontrada" };
-                    respuesta = JsonConvert.SerializeObject(respuestaDto);
-                }
-                // Llamada al procedimiento almacenado
-                respuesta = _sql.EjecutarQuery(json, "gen.spCargarEmpresa");
-            }
-            catch (Exception ex)
-            {
-                respuestaDto.idrespuesta = 0;
-                respuestaDto.mensaje = new { codigo = "Error Interno", detalle = ex.Message };
-                respuesta = JsonConvert.SerializeObject(respuestaDto);
-            }
-
-            return respuesta;
-
-        }
-
         public string AgregarEmpresa(string json)
         {
             RespuestaSpDto respuestaDto = new RespuestaSpDto();
@@ -107,32 +78,6 @@ namespace SistemaGestion.Servicios
             return respuesta;
         }
 
-
-        public string ConsultarEmpresa(int EmpresaID)
-        {
-            RespuestaSpDto respuestaDto = new RespuestaSpDto();
-            string respuesta;
-            try
-            {
-                var json = JsonConvert.SerializeObject(new { EmpresaID = EmpresaID });
-                respuesta = _sql.EjecutarQuery(json, "gen.spConsultarEmpresa");
-
-                if (string.IsNullOrEmpty(respuesta))
-                {
-                    respuestaDto.idrespuesta = 0;
-                    respuestaDto.mensaje = new { codigo = "Empresa No Encontrada" };
-                    respuesta = JsonConvert.SerializeObject(respuestaDto);
-                }
-            }
-            catch (Exception ex)
-            {
-                respuestaDto.idrespuesta = 0;
-                respuestaDto.mensaje = new { codigo = "Error Interno", detalle = ex.Message };
-                respuesta = JsonConvert.SerializeObject(respuestaDto);
-            }
-
-            return respuesta;
-        }
 
         public string ActualizarEmpresa(string json)
         {
@@ -174,6 +119,7 @@ namespace SistemaGestion.Servicios
             return respuesta;
         }
 
+
         public string EliminarEmpresa(int EmpresaID)
         {
             RespuestaSpDto respuestaDto = new RespuestaSpDto();
@@ -199,6 +145,37 @@ namespace SistemaGestion.Servicios
 
             return respuesta;
         }
+
+
+        public string CargarEmpresa(string json)
+        {
+            RespuestaSpDto respuestaDto = new RespuestaSpDto();
+            string respuesta;
+
+            try
+            {
+                var EmpresaDto = JsonConvert.DeserializeObject<EmpresaDto>(json);
+
+                if (EmpresaDto?.EmpresaID == null)
+                {
+                    respuestaDto.idrespuesta = 0;
+                    respuestaDto.mensaje = new { codigo = "Empresa No Encontrada" };
+                    respuesta = JsonConvert.SerializeObject(respuestaDto);
+                }
+                // Llamada al procedimiento almacenado
+                respuesta = _sql.EjecutarQuery(json, "gen.spCargarEmpresa");
+            }
+            catch (Exception ex)
+            {
+                respuestaDto.idrespuesta = 0;
+                respuestaDto.mensaje = new { codigo = "Error Interno", detalle = ex.Message };
+                respuesta = JsonConvert.SerializeObject(respuestaDto);
+            }
+
+            return respuesta;
+
+        }
+
     }
 }
         
