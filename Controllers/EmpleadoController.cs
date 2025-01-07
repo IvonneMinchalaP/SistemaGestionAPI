@@ -49,25 +49,26 @@ namespace SistemaGestion.Controllers
             }
         }
 
-        [HttpGet("cargar/{EmpleadoID}", Name = "CargarEmpleado")]
-        public IActionResult CargarEmpleado(int EmpleadoID)
+        [HttpGet("cargar", Name = "CargarEmpleado")]
+        [Authorize]
+        public IActionResult CargarEmpleado([FromQuery] int empleadoID)
         {
             try
             {
-                var token = Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
 
-                if (string.IsNullOrEmpty(token))
+                if (empleadoID <= 0)
                 {
-                    return Unauthorized("Token no proporcionado o inválido.");
+                    return BadRequest(new { mensaje = "El ID del empleado es inválido" });
                 }
-
-                var respuesta = _empleado.CargarEmpleado(EmpleadoID);
+                var jsonRequest = JsonSerializer.Serialize(new { EmpleadoID = empleadoID });
+                var respuesta = _empleado.CargarEmpleado(jsonRequest);
 
                 if (string.IsNullOrEmpty(respuesta))
                 {
-                    return NotFound(new { mensaje = "Empleado no encontrado" });
+                    return NotFound(new { mensaje = "empleado no encontrado" });
                 }
-                return Ok(respuesta);
+
+                return Ok(JsonSerializer.Deserialize<object>(respuesta));
             }
             catch (Exception ex)
             {
@@ -76,6 +77,7 @@ namespace SistemaGestion.Controllers
         }
 
         [HttpPost("agregar", Name = "AgregarEmpleado")]
+        [Authorize]
         public IActionResult AgregarEmpleado([FromBody] EmpleadoDto empleado)
         {
             try
@@ -97,32 +99,7 @@ namespace SistemaGestion.Controllers
             }
         }
 
-        [HttpGet("consultar/{EmpleadoID}", Name = "ConsultarEmpleado")]
-        public IActionResult ConsultarEmpleado(int EmpleadoID)
-        {
-            try
-            {
-                var token = Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
-
-                if (string.IsNullOrEmpty(token))
-                {
-                    return Unauthorized("Token no proporcionado o inválido.");
-                }
-
-                var respuesta = _empleado.ConsultarEmpleado(EmpleadoID);
-                if (string.IsNullOrEmpty(respuesta))
-                {
-                    return NotFound(new { mensaje = "Empresa no encontrado" });
-                }
-                return Ok(respuesta);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(new { mensaje = "Error al ejecutar", detalle = ex.Message });
-            }
-        }
-
-
+        
         [HttpPut("actualizar", Name = "ActualizarEmpleado")]
         public IActionResult ActualizarEmpleado([FromBody] EmpleadoDto empleado)
         {
@@ -145,20 +122,28 @@ namespace SistemaGestion.Controllers
             }
         }
 
-        [HttpDelete("eliminar/{EmpleadoID}", Name = "EliminarEmpleado")]
-        public IActionResult EliminarEmpleado(int EmpleadoID)
+        [HttpDelete("eliminar", Name = "EliminarEmpleado")]
+        [Authorize]
+
+        public IActionResult EliminarEmpleado([FromQuery] int empleadoID)
         {
             try
             {
                 var token = Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
 
-                if (string.IsNullOrEmpty(token))
+                if (empleadoID <= 0)
                 {
-                    return Unauthorized("Token no proporcionado o inválido.");
+                    return BadRequest(new { mensaje = "El ID del empleado es inválido" });
+                }
+                var jsonRequest = JsonSerializer.Serialize(new { EmpleadoID = empleadoID });
+                var respuesta = _empleado.EliminarEmpleado(jsonRequest);
+
+                if (string.IsNullOrEmpty(respuesta))
+                {
+                    return NotFound(new { mensaje = "Empleado no encontrado" });
                 }
 
-                var respuesta = _empleado.EliminarEmpleado(EmpleadoID);
-                return Ok(respuesta);
+                return Ok(JsonSerializer.Deserialize<object>(respuesta));
             }
             catch (Exception ex)
             {

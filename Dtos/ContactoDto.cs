@@ -8,7 +8,5 @@
         public string? Telefono { get; set; }
         public string? Mensaje { get; set; }
 
-        public string? FechaContacto { get; set; }
-
     }
 }

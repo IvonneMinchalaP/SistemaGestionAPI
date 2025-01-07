@@ -23,8 +23,8 @@ namespace SistemaGestion.Servicios
                 if (string.IsNullOrEmpty(ContactoDto.Nombre) ||
                     string.IsNullOrEmpty(ContactoDto.Email) ||
                     string.IsNullOrEmpty(ContactoDto.Telefono) ||
-                    string.IsNullOrEmpty(ContactoDto.Mensaje) ||
-                    string.IsNullOrEmpty(ContactoDto.FechaContacto))
+                    string.IsNullOrEmpty(ContactoDto.Mensaje)
+                   )
 
                 {
                     respuestaDto.idrespuesta = 0;

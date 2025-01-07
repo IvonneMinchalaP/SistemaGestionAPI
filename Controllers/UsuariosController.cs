@@ -43,6 +43,7 @@ namespace SistemaGestion.Controllers
                 }
 
                 var jsonRequest = JsonSerializer.Serialize(new { UsuarioID = usuarioID });
+
                 var respuesta = _usuario.ConsultarUsuario(jsonRequest);
 
                 if (string.IsNullOrEmpty(respuesta))
@@ -102,7 +103,7 @@ namespace SistemaGestion.Controllers
                     var token = GenerarToken(usuarioValido);
 
                     // Incluir el UsuarioID en la respuesta
-                    return Ok(new { token, usuarioID = usuarioValido.UsuarioID });
+                    return Ok(new { token, usuarioID = usuarioValido.UsuarioID, nombre=usuarioValido.Nombre });
                 }
                 else
                 {
@@ -137,7 +138,8 @@ namespace SistemaGestion.Controllers
                         return new UsuarioDto
                         {
                             UsuarioID = reader.GetInt32(0),
-                            Email = reader.GetString(1)
+                            Email = reader.GetString(3),
+                            Nombre = reader.GetString(1),
                         };
                     }
                 }

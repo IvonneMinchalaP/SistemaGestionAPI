@@ -59,7 +59,7 @@ namespace SistemaGestion.Servicios
                     return JsonConvert.SerializeObject(respuestaDto);
                 }
 
-                respuesta = _sql.EjecutarQuery(json, "gen.spAgregarEmpresa");
+                respuesta = _sql.EjecutarQuery(json,"gen.spAgregarEmpresa");
 
                 if (string.IsNullOrEmpty(respuesta))
                 {
@@ -120,21 +120,22 @@ namespace SistemaGestion.Servicios
         }
 
 
-        public string EliminarEmpresa(int EmpresaID)
+        public string EliminarEmpresa(string json)
         {
             RespuestaSpDto respuestaDto = new RespuestaSpDto();
             string respuesta;
             try
             {
-                var json = JsonConvert.SerializeObject(new { EmpresaID = EmpresaID });
-                respuesta = _sql.EjecutarQuery(json, "gen.spEliminarEmpresa");
+                var EmpresaDto = JsonConvert.DeserializeObject<EmpresaDto>(json);
 
-                if (string.IsNullOrEmpty(respuesta))
+                if (EmpresaDto?.EmpresaID == null)
                 {
                     respuestaDto.idrespuesta = 0;
                     respuestaDto.mensaje = new { codigo = "Empresa No Encontrada" };
                     respuesta = JsonConvert.SerializeObject(respuestaDto);
                 }
+                // Llamada al procedimiento almacenado
+                respuesta = _sql.EjecutarQuery(json, "gen.spEliminarEmpresa");
             }
             catch (Exception ex)
             {
@@ -144,6 +145,7 @@ namespace SistemaGestion.Servicios
             }
 
             return respuesta;
+
         }
 
 

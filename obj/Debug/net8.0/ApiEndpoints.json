@@ -53,15 +53,15 @@
   {
     "ContainingType": "SistemaGestion.Controllers.EmpleadoController",
     "Method": "CargarEmpleado",
-    "RelativePath": "api/empleado/cargar/{EmpleadoID}",
+    "RelativePath": "api/empleado/cargar",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "EmpleadoID",
+        "Name": "empleadoID",
         "Type": "System.Int32",
-        "IsRequired": true
+        "IsRequired": false
       }
     ],
     "ReturnTypes": [],
@@ -69,33 +69,16 @@
   },
   {
     "ContainingType": "SistemaGestion.Controllers.EmpleadoController",
-    "Method": "ConsultarEmpleado",
-    "RelativePath": "api/empleado/consultar/{EmpleadoID}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "EmpleadoID",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [],
-    "EndpointName": "ConsultarEmpleado"
-  },
-  {
-    "ContainingType": "SistemaGestion.Controllers.EmpleadoController",
     "Method": "EliminarEmpleado",
-    "RelativePath": "api/empleado/eliminar/{EmpleadoID}",
+    "RelativePath": "api/empleado/eliminar",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "EmpleadoID",
+        "Name": "empleadoID",
         "Type": "System.Int32",
-        "IsRequired": true
+        "IsRequired": false
       }
     ],
     "ReturnTypes": [],
@@ -166,15 +149,15 @@
   {
     "ContainingType": "SistemaGestion.Controllers.EmpresaController",
     "Method": "EliminarEmpresa",
-    "RelativePath": "api/empresa/eliminar/{EmpresaID}",
+    "RelativePath": "api/empresa/eliminar",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "EmpresaID",
+        "Name": "empresaID",
         "Type": "System.Int32",
-        "IsRequired": true
+        "IsRequired": false
       }
     ],
     "ReturnTypes": [],

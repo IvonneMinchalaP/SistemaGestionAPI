@@ -38,21 +38,22 @@ namespace SistemaGestion.Servicios
 
             return respuesta;
         }
-        public string CargarEmpleado(int EmpleadoID)
+        public string CargarEmpleado(string json)
         {
             RespuestaSpDto respuestaDto = new RespuestaSpDto();
             string respuesta;
             try
             {
-                var json = JsonConvert.SerializeObject(new { EmpleadoID = EmpleadoID });
-                respuesta = _sql.EjecutarQuery(json, "gen.spCargarEmpleado");
+                var EmpleadoDto = JsonConvert.DeserializeObject<EmpleadoDto>(json);
 
-                if (string.IsNullOrEmpty(respuesta))
+                if (EmpleadoDto?.EmpleadoID == null)
                 {
                     respuestaDto.idrespuesta = 0;
                     respuestaDto.mensaje = new { codigo = "Empleado No Encontrada" };
                     respuesta = JsonConvert.SerializeObject(respuestaDto);
                 }
+                // Llamada al procedimiento almacenado
+                respuesta = _sql.EjecutarQuery(json, "gen.spCargarEmpleado");
             }
             catch (Exception ex)
             {
@@ -103,32 +104,6 @@ namespace SistemaGestion.Servicios
         }
 
 
-        public string ConsultarEmpleado(int EmpleadoID)
-        {
-            RespuestaSpDto respuestaDto = new RespuestaSpDto();
-            string respuesta;
-            try
-            {
-                var json = JsonConvert.SerializeObject(new { EmpleadoID = EmpleadoID });
-                respuesta = _sql.EjecutarQuery(json, "gen.spConsultarEmpleado");
-
-                if (string.IsNullOrEmpty(respuesta))
-                {
-                    respuestaDto.idrespuesta = 0;
-                    respuestaDto.mensaje = new { codigo = "Empleado No Encontrada" };
-                    respuesta = JsonConvert.SerializeObject(respuestaDto);
-                }
-            }
-            catch (Exception ex)
-            {
-                respuestaDto.idrespuesta = 0;
-                respuestaDto.mensaje = new { codigo = "Error Interno", detalle = ex.Message };
-                respuesta = JsonConvert.SerializeObject(respuestaDto);
-            }
-
-            return respuesta;
-        }
-
         public string ActualizarEmpleado(string json)
         {
             RespuestaSpDto respuestaDto = new RespuestaSpDto();
@@ -168,21 +143,22 @@ namespace SistemaGestion.Servicios
             return respuesta;
         }
 
-        public string EliminarEmpleado(int EmpleadoID)
+        public string EliminarEmpleado(string json)
         {
             RespuestaSpDto respuestaDto = new RespuestaSpDto();
             string respuesta;
             try
             {
-                var json = JsonConvert.SerializeObject(new { EmpleadoID = EmpleadoID });
-                respuesta = _sql.EjecutarQuery(json, "gen.spEliminarEmpleado");
+                var EmpleadoDto = JsonConvert.DeserializeObject<EmpleadoDto>(json);
 
-                if (string.IsNullOrEmpty(respuesta))
+                if (EmpleadoDto?.EmpleadoID == null)
                 {
                     respuestaDto.idrespuesta = 0;
-                    respuestaDto.mensaje = new { codigo = "Empleado No Encontrada" };
+                    respuestaDto.mensaje = new { codigo = "empleado No Encontrada" };
                     respuesta = JsonConvert.SerializeObject(respuestaDto);
                 }
+                // Llamada al procedimiento almacenado
+                respuesta = _sql.EjecutarQuery(json, "gen.spEliminarEmpleado");
             }
             catch (Exception ex)
             {
@@ -192,6 +168,7 @@ namespace SistemaGestion.Servicios
             }
 
             return respuesta;
+
         }
     }
 }

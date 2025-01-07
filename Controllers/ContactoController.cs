@@ -19,6 +19,7 @@ namespace SistemaGestion.Controllers
         }
 
         [HttpPost("insertar", Name = "InsertarContacto")]
+        [Authorize]
         public IActionResult InsertarContacto([FromBody] ContactoDto contacto)
         {
             try

@@ -101,8 +101,6 @@ namespace SistemaGestion.Controllers
         {
             try
             {
-                //var token = Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
-
                 if (empresaID <= 0)
                 {
                     return BadRequest(new { mensaje = "El ID de la empresa es inválido" });
@@ -123,20 +121,27 @@ namespace SistemaGestion.Controllers
             }
         }
 
-        [HttpDelete("eliminar/{EmpresaID}", Name = "EliminarEmpresa")]
-        public IActionResult EliminarEmpresa(int EmpresaID)
+        [HttpDelete("eliminar", Name = "EliminarEmpresa")]
+        [Authorize]
+        public IActionResult EliminarEmpresa([FromQuery]  int empresaID)
         {
             try
             {
                 var token = Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
 
-                if (string.IsNullOrEmpty(token))
+                if (empresaID <= 0)
                 {
-                    return Unauthorized("Token no proporcionado o inválido.");
+                    return BadRequest(new { mensaje = "El ID de la empresa es inválido" });
+                }
+                var jsonRequest = JsonSerializer.Serialize(new { EmpresaID = empresaID });
+                var respuesta = _empresa.EliminarEmpresa(jsonRequest);
+
+                if (string.IsNullOrEmpty(respuesta))
+                {
+                    return NotFound(new { mensaje = "Empresa no encontrado" });
                 }
 
-                var respuesta = _empresa.EliminarEmpresa(EmpresaID);
-                return Ok(respuesta);
+                return Ok(JsonSerializer.Deserialize<object>(respuesta));
             }
             catch (Exception ex)
             {

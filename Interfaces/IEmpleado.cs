@@ -2,11 +2,10 @@
 {
     public interface IEmpleado
     {
-        string CargarEmpleado(int EmpleadoID);
+        string CargarEmpleado(string json);
         string AgregarEmpleado(string json);
-        string ConsultarEmpleado(int EmpleadoID);
         string ActualizarEmpleado(string json);
-        string EliminarEmpleado(int EmpleadoID);
+        string EliminarEmpleado(string json);
         string ObtenerEmpleado();
 
     }
