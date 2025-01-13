@@ -72,6 +72,30 @@
         ]
       }
     },
+    "/api/empleado/obtener-empleadoData": {
+      "get": {
+        "tags": [
+          "Empleado"
+        ],
+        "operationId": "ObtenerEmpleadosData",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          }
+        ]
+      }
+    },
     "/api/empleado/cargar": {
       "get": {
         "tags": [
@@ -404,59 +428,12 @@
         ]
       }
     },
-    "/api/usuario/consultar": {
+    "/api/geografia/obtener-estructura-geografica": {
       "get": {
         "tags": [
-          "Usuario"
+          "Geografia"
         ],
-        "operationId": "ConsultarUsuario",
-        "parameters": [
-          {
-            "name": "usuarioID",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          }
-        },
-        "security": [
-          {
-            "oauth2": [ ]
-          }
-        ]
-      }
-    },
-    "/api/usuario/actualizar": {
-      "put": {
-        "tags": [
-          "Usuario"
-        ],
-        "operationId": "ActualizarUsuario",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": { }
-            },
-            "text/json": {
-              "schema": { }
-            },
-            "application/*+json": {
-              "schema": { }
-            }
-          }
-        },
+        "operationId": "ObtenerEstructuraGeografica",
         "responses": {
           "200": {
             "description": "OK"
@@ -531,6 +508,77 @@
             "description": "OK"
           }
         }
+      }
+    },
+    "/api/usuario/consultar": {
+      "get": {
+        "tags": [
+          "Usuario"
+        ],
+        "operationId": "ConsultarUsuario",
+        "parameters": [
+          {
+            "name": "usuarioID",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          }
+        ]
+      }
+    },
+    "/api/usuario/actualizar": {
+      "put": {
+        "tags": [
+          "Usuario"
+        ],
+        "operationId": "ActualizarUsuario",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { }
+            },
+            "text/json": {
+              "schema": { }
+            },
+            "application/*+json": {
+              "schema": { }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          }
+        ]
       }
     }
   },

@@ -7,6 +7,8 @@
         string ActualizarEmpleado(string json);
         string EliminarEmpleado(string json);
         string ObtenerEmpleado();
+        string ObtenerEmpleadoData();
+
 
     }
 }

@@ -18,6 +18,8 @@ builder.Services.AddTransient<IUsuario, ServiceUsuario>();
 builder.Services.AddTransient<IEmpresa, ServiceEmpresa>();
 builder.Services.AddTransient<IEmpleado, ServiceEmpleado>();
 builder.Services.AddTransient<IContacto, ServiceContacto>();
+builder.Services.AddTransient<IGeografia, ServiceGeografia>();
+
 
 
 
@@ -72,7 +74,6 @@ app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
 
-//app.UseMiddleware<Seguridad>();
 
 app.MapControllers();
 

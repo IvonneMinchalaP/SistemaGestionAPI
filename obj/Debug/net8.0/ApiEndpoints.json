@@ -96,6 +96,17 @@
     "EndpointName": "ObtenerEmpleados"
   },
   {
+    "ContainingType": "SistemaGestion.Controllers.EmpleadoController",
+    "Method": "ObtenerEmpleadoData",
+    "RelativePath": "api/empleado/obtener-empleadoData",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [],
+    "EndpointName": "ObtenerEmpleadosData"
+  },
+  {
     "ContainingType": "SistemaGestion.Controllers.EmpresaController",
     "Method": "ActualizarEmpresa",
     "RelativePath": "api/empresa/actualizar",
@@ -173,6 +184,17 @@
     "Parameters": [],
     "ReturnTypes": [],
     "EndpointName": "ObtenerEmpresas"
+  },
+  {
+    "ContainingType": "SistemaGestion.Controllers.GeografiaController",
+    "Method": "ObtenerEstructuraGeografica",
+    "RelativePath": "api/geografia/obtener-estructura-geografica",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [],
+    "EndpointName": "ObtenerEstructuraGeografica"
   },
   {
     "ContainingType": "SistemaGestion.Controllers.UsuarioController",

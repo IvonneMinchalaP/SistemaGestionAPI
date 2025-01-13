@@ -38,7 +38,33 @@ namespace SistemaGestion.Controllers
                 var respuesta = _empleado.ObtenerEmpleado();
                 if (string.IsNullOrEmpty(respuesta))
                 {
-                    return NotFound(new { mensaje = "No se encontraron empresas" });
+                    return NotFound(new { mensaje = "No se encontraron empleados" });
+                }
+
+                return Ok(JsonSerializer.Deserialize<object>(respuesta));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { mensaje = "Error al ejecutar", detalle = ex.Message });
+            }
+        }
+
+        [HttpGet("obtener-empleadoData", Name = "ObtenerEmpleadosData")]
+        [Authorize]
+        public IActionResult ObtenerEmpleadoData()
+        {
+            try
+            {
+                var token = Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
+                if (string.IsNullOrEmpty(token))
+                {
+                    return Unauthorized(new { mensaje = "Token no proporcionado" });
+                }
+
+                var respuesta = _empleado.ObtenerEmpleadoData();
+                if (string.IsNullOrEmpty(respuesta))
+                {
+                    return NotFound(new { mensaje = "No se encontraron empleados" });
                 }
 
                 return Ok(JsonSerializer.Deserialize<object>(respuesta));

@@ -38,6 +38,31 @@ namespace SistemaGestion.Servicios
 
             return respuesta;
         }
+
+        public string ObtenerEmpleadoData()
+        {
+            RespuestaSpDto respuestaDto = new RespuestaSpDto();
+            string respuesta;
+
+            try
+            {
+                respuesta = _sql.EjecutarQuery("{}", "gen.spObtenerEmpleadosData");
+                if (string.IsNullOrEmpty(respuesta))
+                {
+                    respuestaDto.idrespuesta = 0;
+                    respuestaDto.mensaje = new { codigo = "Error BaseDatos" };
+                    return JsonConvert.SerializeObject(respuestaDto);
+                }
+            }
+            catch (Exception ex)
+            {
+                respuestaDto.idrespuesta = 0;
+                respuestaDto.mensaje = new { codigo = "Error Interno", detalle = ex.Message };
+                respuesta = JsonConvert.SerializeObject(respuestaDto);
+            }
+
+            return respuesta;
+        }
         public string CargarEmpleado(string json)
         {
             RespuestaSpDto respuestaDto = new RespuestaSpDto();
